@@ -1,0 +1,43 @@
+Interfacing of Bluetooth Module HC-05 with Arduino Uno.
+
+Follow the pin configuartion of HC-05 with Arduino Uno
+
+HC-05                       Arduino UNO
+VCC                         +5V
+GND                         GND
+RX                          TX (Pin 1)
+TX                          RX (Pin 0)
+
+Note: Please make sure to un-plug the power connection of HC-05 module while Uploading code on Arduino Uno.
+
+Try this code to get tested with Arduino Uno and Builtin Led.
+
+Download the Bluetooth Terminal App from Google playstore to test and verify the program.
+
+char data = 0;
+
+void setup() {
+  // put your setup code here, to run once:
+
+  Serial.begin(9600);
+  pinMode(13, OUTPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+  if (Serial.available() > 0)
+  {
+    data = Serial.read();
+    Serial.print(data);
+    if (data == '1')
+  {
+    digitalWrite(13, HIGH);
+    }
+    else if(data == '0')
+    {
+      digitalWrite(13, LOW);
+    }
+
+  }
+}
